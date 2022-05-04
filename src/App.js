@@ -1,33 +1,25 @@
 import React, { Component } from "react";
 import EducationInfo from "./components/EducationInfo";
 import ExperienceInfo from "./components/ExperienceInfo";
+import Navbar from "./components/Navbar";
 import PersonalInfo from "./components/PersonalInfo";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  height: 10px;
+  border: 1px-solid black;
+  background-color: papayawhip;
+`;
 
 export default class App extends Component {
-  constructor() {
-    super();
-    this.textInput = React.createRef();
-
-    this.state = {
-      firstName: "",
-      lastName: "",
-    };
-  }
-
-  handleChange = (e) => {
-    this.setState({
-      firstName: this.textInput.current.value,
-    });
-  };
-
   render() {
     return (
-      <div>
-        <h1>CV Creator With React</h1>
+      <Wrapper>
+        <Navbar />
         <PersonalInfo />
         <EducationInfo />
         <ExperienceInfo />
-      </div>
+      </Wrapper>
     );
   }
 }

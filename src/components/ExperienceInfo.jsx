@@ -2,6 +2,6 @@ import React, { Component } from "react";
 
 export default class ExperienceInfo extends Component {
   render() {
-    return <div>ExperienceInfo</div>;
+    return <div>Experience</div>;
   }
 }
