@@ -1,0 +1,61 @@
+input:focus {
+  outline: none;
+}
+
+.experienceForm {
+  border: 1px solid black;
+}
+
+.form {
+  background: white;
+  border: 1px solid papayawhip;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 auto;
+  padding: 10px 20px;
+  width: 90%;
+}
+
+input {
+  border: 1px solid black;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 4px;
+  width: 50%;
+  margin-left: 5px;
+  font-size: 10px;
+}
+
+label {
+  color: #3d3d3d;
+  display: block;
+  font-family: sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: palevioletred;
+}
+
+label span {
+  color: black;
+  margin-left: 5px;
+}
+
+.btn {
+  padding: 3px 10px;
+  font-size: 10px;
+  background-color: greenyellow;
+  border-radius: 5px;
+  border: none;
+}
+
+.btn:hover {
+  border: 1px solid black;
+}
+
+fieldset {
+  border: 1px solid black;
+  border-radius: 5px;
+}

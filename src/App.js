@@ -1,25 +1,19 @@
 import React, { Component } from "react";
-import EducationInfo from "./components/EducationInfo";
-import ExperienceInfo from "./components/ExperienceInfo";
+import "./App.css";
+import EducationInfo from "./components/EducationComp/EducationInfo";
+import ExperienceInfo from "./components/ExperienceComp/ExperienceInfo";
 import Navbar from "./components/Navbar";
-import PersonalInfo from "./components/PersonalInfo";
-import styled from "styled-components";
-
-const Wrapper = styled.div`
-  height: 10px;
-  border: 1px-solid black;
-  background-color: papayawhip;
-`;
+import PersonalInfo from "./components/PersonalInfoComp/PersonalInfo";
 
 export default class App extends Component {
   render() {
     return (
-      <Wrapper>
+      <React.Fragment>
         <Navbar />
         <PersonalInfo />
         <EducationInfo />
         <ExperienceInfo />
-      </Wrapper>
+      </React.Fragment>
     );
   }
 }
