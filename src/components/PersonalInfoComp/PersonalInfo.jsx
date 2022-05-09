@@ -62,7 +62,7 @@ export default class PersonalInfo extends Component {
             />
           </label>
           <span>
-            <button class="btn" onClick={this.handleSubmitClick}>
+            <button className="btn" onClick={this.handleSubmitClick}>
               Submit Changes
             </button>
           </span>
@@ -93,7 +93,7 @@ export default class PersonalInfo extends Component {
             <span>{this.state.personalInformation.phoneNumber}</span>
           </label>
           <span>
-            <button class="btn" onClick={this.handleEditClick}>
+            <button className="btn" onClick={this.handleEditClick}>
               Edit
             </button>
           </span>
