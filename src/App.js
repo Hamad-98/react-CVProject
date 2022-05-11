@@ -1,18 +1,18 @@
 import React, { Component } from "react";
+import uuid from "react-uuid";
 import "./App.css";
 import EducationInfo from "./components/EducationComp/EducationInfo";
 import ExperienceInfo from "./components/ExperienceComp/ExperienceInfo";
 import Navbar from "./components/Navbar";
 import PersonalInfo from "./components/PersonalInfoComp/PersonalInfo";
-import uuid from "react-uuid";
 
 export default class App extends Component {
   state = {
-    educationArray: [{}],
+    educationArray: [{ id: uuid() }],
   };
   addNewEducationBlock = () => {
     this.setState({
-      educationArray: this.state.educationArray.concat({}),
+      educationArray: this.state.educationArray.concat({ id: uuid() }),
     });
   };
 
@@ -21,6 +21,14 @@ export default class App extends Component {
     educationArray[index] = obj;
     this.setState({
       educationArray: educationArray,
+    });
+  };
+
+  raiseDelete = (index) => {
+    const newClonedArray = [...this.state.educationArray];
+    newClonedArray.splice(index, 1);
+    this.setState({
+      educationArray: newClonedArray,
     });
   };
 
@@ -35,9 +43,10 @@ export default class App extends Component {
             <EducationInfo
               educationArray={this.state.educationArray}
               addNewEducationBlock={this.addNewEducationBlock}
-              key={this.state.educationArray.indexOf(obj)}
+              key={obj.id}
               index={this.state.educationArray.indexOf(obj)}
               saveChildrenState={this.saveChildrenState}
+              handleDelete={this.raiseDelete}
             />
           ))}
           <button onClick={this.addNewEducationBlock}>Add</button>

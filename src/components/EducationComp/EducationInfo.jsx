@@ -89,6 +89,13 @@ export default class EducationInfo extends Component {
           <button className="btn" onClick={this.handleEditClick}>
             Edit
           </button>
+          <button
+            className="btn"
+            // passing parameter to an event handler use ()=>{}
+            onClick={() => this.props.handleDelete(this.props.index)}
+          >
+            Delete
+          </button>
         </span>
       </div>
     );
@@ -110,7 +117,7 @@ export default class EducationInfo extends Component {
   };
 
   handleSubmitClick = () => {
-    this.props.saveChildrenState(this.state.schoolInfo, this.props.index);
+    //this.props.saveChildrenState(this.state.schoolInfo, this.props.index);
     this.setState({
       editing: false,
     });
