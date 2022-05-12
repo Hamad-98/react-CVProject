@@ -117,7 +117,7 @@ export default class EducationInfo extends Component {
   };
 
   handleSubmitClick = () => {
-    //this.props.saveChildrenState(this.state.schoolInfo, this.props.index);
+    this.props.saveChildrenState(this.state.schoolInfo, this.props.index);
     this.setState({
       editing: false,
     });

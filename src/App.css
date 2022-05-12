@@ -4,3 +4,20 @@ body {
   background-color: papayawhip;
   height: 100vh;
 }
+
+.eduAddBtn {
+  background-color: white;
+  padding: 5px 15px;
+  font-size: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-top: 5px;
+  box-shadow: 3px 3px;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.eduAddBtn:hover {
+  transform: scale(1.05);
+  background-color: palevioletred;
+}

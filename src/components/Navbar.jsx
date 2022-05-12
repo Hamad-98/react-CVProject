@@ -6,7 +6,7 @@ const Title = styled.h3`
   text-align: center;
   color: palevioletred;
   font-family: monospace;
-  margin: 0;
+  margin: 0 auto;
 `;
 
 export default function Navbar() {
