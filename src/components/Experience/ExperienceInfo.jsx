@@ -34,7 +34,7 @@ export default class ExperienceInfo extends Component {
           />
         </label>
         <label>
-          position Title:
+          Position Title:
           <input
             name="positionTitle"
             value={positionTitle}

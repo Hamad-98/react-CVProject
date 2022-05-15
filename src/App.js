@@ -45,12 +45,12 @@ export default class App extends Component {
         <Navbar />
 
         <div className="personalInfoDiv">
-          <h3 className="educationHeader">Personal Info</h3>
+          <h3 className="header">Personal Info</h3>
           <PersonalInfo />
         </div>
 
         <div className="educationDiv">
-          <h3 className="educationHeader">Education Info</h3>
+          <h3 className="header">Education</h3>
           {this.state.educationArray.map((obj) => (
             <EducationInfo
               educationArray={this.state.educationArray}
@@ -62,7 +62,7 @@ export default class App extends Component {
           ))}
           <button
             name="edAddBtn"
-            className="eduAddBtn"
+            className="addBtn"
             onClick={this.addNewEducationBlock}
           >
             Add
@@ -70,7 +70,7 @@ export default class App extends Component {
         </div>
 
         <div className="experienceDiv">
-          <h3 className="experienceHeader">Experience Info</h3>
+          <h3 className="header">Experience</h3>
           {this.state.experienceArray.map((obj) => (
             <ExperienceInfo
               experienceArray={this.state.experienceArray}
@@ -82,7 +82,7 @@ export default class App extends Component {
           ))}
           <button
             name="expAddBtn"
-            className="expAddBtn"
+            className="addBtn"
             onClick={this.addNewEducationBlock}
           >
             Add

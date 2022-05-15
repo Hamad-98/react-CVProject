@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Title = styled.h3`
   font-size: 1.5em;
   text-align: center;
-  color: palevioletred;
+  color: rgb(221, 37, 98);
   font-family: monospace;
   margin: 0 auto;
 `;

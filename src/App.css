@@ -5,19 +5,28 @@ body {
   height: 100vh;
 }
 
-.eduAddBtn {
-  background-color: white;
+.addBtn {
+  background-color: rgb(221, 83, 129);
+  color: white;
+  border: 1px solid black;
   padding: 5px 15px;
   font-size: 10px;
   border-radius: 5px;
-  border: none;
   margin-top: 5px;
-  box-shadow: 3px 3px;
+  box-shadow: 3px 3px black;
   letter-spacing: 1px;
   cursor: pointer;
 }
 
-.eduAddBtn:hover {
+.addBtn:hover {
   transform: scale(1.05);
   background-color: palevioletred;
+}
+
+.experienceDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
 }
