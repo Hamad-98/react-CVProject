@@ -11,10 +11,16 @@ export default class App extends Component {
     educationArray: [{ id: uuid() }],
     experienceArray: [{ id: uuid() }],
   };
-  addNewEducationBlock = () => {
-    this.setState({
-      educationArray: this.state.educationArray.concat({ id: uuid() }),
-    });
+  addNewEducationBlock = (e) => {
+    if (e.target.name === "edAddBtn") {
+      this.setState({
+        educationArray: this.state.educationArray.concat({ id: uuid() }),
+      });
+    } else {
+      this.setState({
+        experienceArray: this.state.experienceArray.concat({ id: uuid() }),
+      });
+    }
   };
 
   saveChildrenState = (obj, index) => {
@@ -37,27 +43,51 @@ export default class App extends Component {
     return (
       <React.Fragment>
         <Navbar />
+
         <div className="personalInfoDiv">
           <h3 className="educationHeader">Personal Info</h3>
           <PersonalInfo />
         </div>
+
         <div className="educationDiv">
           <h3 className="educationHeader">Education Info</h3>
           {this.state.educationArray.map((obj) => (
             <EducationInfo
               educationArray={this.state.educationArray}
-              addNewEducationBlock={this.addNewEducationBlock}
               key={obj.id}
               index={this.state.educationArray.indexOf(obj)}
               saveChildrenState={this.saveChildrenState}
               handleDelete={this.raiseDelete}
             />
           ))}
-          <button className="eduAddBtn" onClick={this.addNewEducationBlock}>
+          <button
+            name="edAddBtn"
+            className="eduAddBtn"
+            onClick={this.addNewEducationBlock}
+          >
             Add
           </button>
         </div>
-        <ExperienceInfo />
+
+        <div className="experienceDiv">
+          <h3 className="experienceHeader">Experience Info</h3>
+          {this.state.experienceArray.map((obj) => (
+            <ExperienceInfo
+              experienceArray={this.state.experienceArray}
+              key={obj.id}
+              index={this.state.experienceArray.indexOf(obj)}
+              saveChildrenState={this.saveChildrenState}
+              handleDelete={this.raiseDelete}
+            />
+          ))}
+          <button
+            name="expAddBtn"
+            className="expAddBtn"
+            onClick={this.addNewEducationBlock}
+          >
+            Add
+          </button>
+        </div>
       </React.Fragment>
     );
   }
