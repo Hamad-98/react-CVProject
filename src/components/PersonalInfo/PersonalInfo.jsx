@@ -1,34 +1,37 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "../PersonalInfo/PersonalInfo.css";
 
-export default class PersonalInfo extends Component {
-  state = {
+export default function PersonalInfo() {
+  const [personalObj, setPersonalObj] = useState({
     personalInformation: {
       firstName: "",
       lastName: "",
       email: "",
       phoneNumber: "",
     },
-    editing: true,
-  };
+  });
 
-  checkEditingStatus = () => {
-    if (this.state.editing) {
-      return <React.Fragment>{this.createEditForm()}</React.Fragment>;
+  const [editing, setEditing] = useState(true);
+
+  const checkEditingStatus = () => {
+    if (editing) {
+      return <React.Fragment>{createEditForm()}</React.Fragment>;
     } else {
-      return <React.Fragment>{this.createDisplayForm()}</React.Fragment>;
+      return <React.Fragment>{createDisplayForm()}</React.Fragment>;
     }
   };
 
-  createEditForm = () => {
+  const createEditForm = () => {
+    const { firstName, lastName, email, phoneNumber } =
+      personalObj.personalInformation;
     return (
       <div className="form">
         <label>
           First Name:
           <input
             name="firstName"
-            value={this.state.personalInformation.firstName}
-            onChange={this.handleUserChange}
+            value={firstName}
+            onChange={handleUserChange}
             placeholder="John"
           />
         </label>
@@ -36,8 +39,8 @@ export default class PersonalInfo extends Component {
           Last Name:
           <input
             name="lastName"
-            value={this.state.personalInformation.lastName}
-            onChange={this.handleUserChange}
+            value={lastName}
+            onChange={handleUserChange}
             placeholder="Doe"
           />
         </label>
@@ -45,8 +48,8 @@ export default class PersonalInfo extends Component {
           Email:
           <input
             name="email"
-            value={this.state.personalInformation.email}
-            onChange={this.handleUserChange}
+            value={email}
+            onChange={handleUserChange}
             placeholder="JohnDoe@gmail.com"
           />
         </label>
@@ -54,13 +57,13 @@ export default class PersonalInfo extends Component {
           Phone Number:
           <input
             name="phoneNumber"
-            value={this.state.personalInformation.phoneNumber}
-            onChange={this.handleUserChange}
+            value={phoneNumber}
+            onChange={handleUserChange}
             placeholder="123-456-7890"
           />
         </label>
         <span>
-          <button className="btn" onClick={this.handleSubmitClick}>
+          <button className="btn" onClick={handleSubmitClick}>
             Submit Changes
           </button>
         </span>
@@ -68,53 +71,50 @@ export default class PersonalInfo extends Component {
     );
   };
 
-  createDisplayForm = () => {
+  const createDisplayForm = () => {
+    const { firstName, lastName, email, phoneNumber } =
+      personalObj.personalInformation;
     return (
       <div className="form">
         <label>
           First Name:
-          <span>{this.state.personalInformation.firstName}</span>
+          <span>{firstName}</span>
         </label>
         <label>
           Last Name:
-          <span>{this.state.personalInformation.lastName}</span>
+          <span>{lastName}</span>
         </label>
         <label>
           Email:
-          <span>{this.state.personalInformation.email}</span>
+          <span>{email}</span>
         </label>
         <label>
           Phone Number:
-          <span>{this.state.personalInformation.phoneNumber}</span>
+          <span>{phoneNumber}</span>
         </label>
         <span>
-          <button className="btn" onClick={this.handleEditClick}>
+          <button className="btn" onClick={handleEditClick}>
             Edit
           </button>
         </span>
       </div>
     );
   };
-  handleEditClick = () => {
-    this.setState({
-      editing: true,
-    });
+  const handleEditClick = () => {
+    setEditing(true);
   };
-  handleSubmitClick = () => {
-    this.setState({
-      editing: false,
-    });
+  const handleSubmitClick = () => {
+    setEditing(false);
   };
 
-  handleUserChange = (e) => {
-    this.setState({
+  const handleUserChange = (e) => {
+    setPersonalObj((prevState) => ({
       personalInformation: {
-        ...this.state.personalInformation,
+        ...prevState.personalInformation,
         [e.target.name]: e.target.value,
       },
-    });
+    }));
   };
-  render() {
-    return <div>{this.checkEditingStatus()}</div>;
-  }
+
+  return <div>{checkEditingStatus()}</div>;
 }
