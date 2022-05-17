@@ -5,7 +5,7 @@ React app that allows user to create a resume
 
 ### `Learning Objective`
 
-1. Help learn react fundamentals ( state management and components )
+1. Help learn react fundamentals ( state management, functional components, and hooks )
 
 ### `Built with`
 
