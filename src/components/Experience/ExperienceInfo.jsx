@@ -1,27 +1,27 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
-export default class ExperienceInfo extends Component {
-  state = {
-    educationInfo: {
+export default function ExperienceInfo(props) {
+  const [experienceObj, setEducationObj] = useState({
+    experienceInfo: {
       companyName: "",
       positionTitle: "",
       startDate: "",
       endDate: "",
     },
-    editing: true,
-  };
+  });
+  const [editing, setEditing] = useState(true);
 
-  checkEditingStatus = () => {
-    if (this.state.editing) {
-      return <React.Fragment>{this.createEditForm()}</React.Fragment>;
+  const checkEditingStatus = () => {
+    if (editing) {
+      return <React.Fragment>{createEditForm()}</React.Fragment>;
     } else {
-      return <React.Fragment>{this.createDisplayForm()}</React.Fragment>;
+      return <React.Fragment>{createDisplayForm()}</React.Fragment>;
     }
   };
 
-  createEditForm = () => {
+  const createEditForm = () => {
     const { companyName, positionTitle, startDate, endDate } =
-      this.state.educationInfo;
+      experienceObj.experienceInfo;
     return (
       <div className="form">
         <label>
@@ -29,7 +29,7 @@ export default class ExperienceInfo extends Component {
           <input
             name="companyName"
             value={companyName}
-            onChange={this.handleChange}
+            onChange={handleChange}
             placeholder=""
           />
         </label>
@@ -38,7 +38,7 @@ export default class ExperienceInfo extends Component {
           <input
             name="positionTitle"
             value={positionTitle}
-            onChange={this.handleChange}
+            onChange={handleChange}
             placeholder=""
           />
         </label>
@@ -47,7 +47,7 @@ export default class ExperienceInfo extends Component {
           <input
             name="startDate"
             value={startDate}
-            onChange={this.handleChange}
+            onChange={handleChange}
             placeholder=""
           />
         </label>
@@ -56,12 +56,12 @@ export default class ExperienceInfo extends Component {
           <input
             name="endDate"
             value={endDate}
-            onChange={this.handleChange}
+            onChange={handleChange}
             placeholder=""
           />
         </label>
         <span>
-          <button className="btn" onClick={this.handleSubmitClick}>
+          <button className="btn" onClick={handleSubmitClick}>
             Submit Changes
           </button>
         </span>
@@ -69,9 +69,9 @@ export default class ExperienceInfo extends Component {
     );
   };
 
-  createDisplayForm = () => {
+  const createDisplayForm = () => {
     const { companyName, positionTitle, startDate, endDate } =
-      this.state.educationInfo;
+      experienceObj.experienceInfo;
 
     return (
       <div className="form">
@@ -92,13 +92,14 @@ export default class ExperienceInfo extends Component {
           <span>{endDate}</span>
         </label>
         <span>
-          <button className="btn" onClick={this.handleEditClick}>
+          <button className="btn" onClick={handleEditClick}>
             Edit
           </button>
           <button
+            name="expDelBtn"
             className="btn"
             // passing parameter to an event handler use ()=>{}
-            onClick={() => this.props.handleDelete(this.props.index)}
+            onClick={() => props.handleDelete(props.index)}
           >
             Delete
           </button>
@@ -107,29 +108,22 @@ export default class ExperienceInfo extends Component {
     );
   };
 
-  handleChange = (e) => {
-    this.setState({
-      educationInfo: {
-        ...this.state.educationInfo,
+  const handleChange = (e) => {
+    setEducationObj((prevState) => ({
+      experienceInfo: {
+        ...prevState.experienceInfo,
         [e.target.name]: e.target.value,
       },
-    });
+    }));
   };
 
-  handleEditClick = () => {
-    this.setState({
-      editing: true,
-    });
+  const handleEditClick = () => {
+    setEditing(true);
   };
 
-  handleSubmitClick = () => {
-    //this.props.saveChildrenState(this.state.educationInfo, this.props.index);
-    this.setState({
-      editing: false,
-    });
+  const handleSubmitClick = () => {
+    setEditing(false);
   };
 
-  render() {
-    return <React.Fragment>{this.checkEditingStatus()} </React.Fragment>;
-  }
+  return <React.Fragment>{checkEditingStatus()} </React.Fragment>;
 }

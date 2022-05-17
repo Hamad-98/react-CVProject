@@ -1,22 +1,28 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./EducationInfo.css";
 
-export default class EducationInfo extends Component {
-  state = {
-    schoolInfo: { schoolName: "", program: "", startDate: "", endDate: "" },
-    editing: true,
-  };
+export default function EducationInfo(props) {
+  const [educationObj, setSchoolObj] = useState({
+    educationInfo: {
+      schoolName: "",
+      program: "",
+      startDate: "",
+      endDate: "",
+    },
+  });
+  const [editing, setEditing] = useState(true);
 
-  checkEditingStatus = () => {
-    if (this.state.editing) {
-      return <React.Fragment>{this.createEditForm()}</React.Fragment>;
+  const checkEditingStatus = () => {
+    if (editing) {
+      return <React.Fragment>{createEditForm()}</React.Fragment>;
     } else {
-      return <React.Fragment>{this.createDisplayForm()}</React.Fragment>;
+      return <React.Fragment>{createDisplayForm()}</React.Fragment>;
     }
   };
 
-  createEditForm = () => {
-    const { schoolName, program, startDate, endDate } = this.state.schoolInfo;
+  const createEditForm = () => {
+    const { schoolName, program, startDate, endDate } =
+      educationObj.educationInfo;
     return (
       <div className="form">
         <label>
@@ -24,7 +30,7 @@ export default class EducationInfo extends Component {
           <input
             name="schoolName"
             value={schoolName}
-            onChange={this.handleChange}
+            onChange={handleChange}
             placeholder=""
           />
         </label>
@@ -33,7 +39,7 @@ export default class EducationInfo extends Component {
           <input
             name="program"
             value={program}
-            onChange={this.handleChange}
+            onChange={handleChange}
             placeholder=""
           />
         </label>
@@ -42,7 +48,7 @@ export default class EducationInfo extends Component {
           <input
             name="startDate"
             value={startDate}
-            onChange={this.handleChange}
+            onChange={handleChange}
             placeholder=""
           />
         </label>
@@ -51,12 +57,12 @@ export default class EducationInfo extends Component {
           <input
             name="endDate"
             value={endDate}
-            onChange={this.handleChange}
+            onChange={handleChange}
             placeholder=""
           />
         </label>
         <span>
-          <button className="btn" onClick={this.handleSubmitClick}>
+          <button className="btn" onClick={handleSubmitClick}>
             Submit Changes
           </button>
         </span>
@@ -64,8 +70,9 @@ export default class EducationInfo extends Component {
     );
   };
 
-  createDisplayForm = () => {
-    const { schoolName, program, startDate, endDate } = this.state.schoolInfo;
+  const createDisplayForm = () => {
+    const { schoolName, program, startDate, endDate } =
+      educationObj.educationInfo;
 
     return (
       <div className="form">
@@ -86,13 +93,14 @@ export default class EducationInfo extends Component {
           <span>{endDate}</span>
         </label>
         <span>
-          <button className="btn" onClick={this.handleEditClick}>
+          <button className="btn" onClick={handleEditClick}>
             Edit
           </button>
           <button
+            name="edDelBtn"
             className="btn"
             // passing parameter to an event handler use ()=>{}
-            onClick={() => this.props.handleDelete(this.props.index)}
+            onClick={() => props.handleDelete(props.index)}
           >
             Delete
           </button>
@@ -101,29 +109,22 @@ export default class EducationInfo extends Component {
     );
   };
 
-  handleChange = (e) => {
-    this.setState({
-      schoolInfo: {
-        ...this.state.schoolInfo,
+  const handleChange = (e) => {
+    setSchoolObj((prevState) => ({
+      educationInfo: {
+        ...prevState.educationInfo,
         [e.target.name]: e.target.value,
       },
-    });
+    }));
   };
 
-  handleEditClick = () => {
-    this.setState({
-      editing: true,
-    });
+  const handleEditClick = () => {
+    setEditing(true);
   };
 
-  handleSubmitClick = () => {
-    this.props.saveChildrenState(this.state.schoolInfo, this.props.index);
-    this.setState({
-      editing: false,
-    });
+  const handleSubmitClick = () => {
+    setEditing(false);
   };
 
-  render() {
-    return <React.Fragment>{this.checkEditingStatus()} </React.Fragment>;
-  }
+  return <React.Fragment>{checkEditingStatus()} </React.Fragment>;
 }
