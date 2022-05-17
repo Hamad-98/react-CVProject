@@ -9,10 +9,9 @@ React app that allows user to create a resume
 
 ### `Built with`
 
-1. React
-2. Styled Component
-3. react print
-4. Uuid
+1. React functional components
+2. React hooks
+3. Uuid
 
 
 
